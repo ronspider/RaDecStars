@@ -1,5 +1,7 @@
-# File: Ra_Dec_Star_Rev1.1.py 
-# Name: "Right Ascension Declination Star" Version 1.0
+1 File: Ra_Dec_Star_Rev1.1.py 
+# Name: "Right Ascension Declination Star" Version 1.1
+
+# (c)2023 by Ron Spider, rspaida@gmail.com
 
 # https://www.johnpAratt.com/items/astronomy/mag_5_stars.html
 # Add to mag_5_stars.csv file: 
