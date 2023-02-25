@@ -1,4 +1,4 @@
-1 File: Ra_Dec_Star_Rev1.1.py 
+# File: radecstar.py 
 # Name: "Right Ascension Declination Star" Version 1.1
 
 # (c)2023 by Ron Spider, rspaida@gmail.com, [test]
