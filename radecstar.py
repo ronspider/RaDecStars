@@ -1,10 +1,10 @@
-# File: radecstar.py 
+# File: radecstar.py
 # Name: "Right Ascension Declination Star" Version 1.1
 
 # (c)2023 by Ron Spider, rspaida@gmail.com, [test]
 
 # https://www.johnpAratt.com/items/astronomy/mag_5_stars.html
-# Add to mag_5_stars.csv file: 
+# Add to mag_5_stars.csv file:
 # Polaris https://en.wikipedia.org/wiki/Polaris
 # Hind's Crimson Star https://en.wikipedia.org/wiki/R_Leporis
 
@@ -28,31 +28,31 @@ size = 10
 def star_name_conv(name, ID):
     if name == "":
         return ID
-    else: 
+    else:
         return name
-    
+
 
 # Ranger Mapper
 # a = in range min, b = in range max
 # c = out range min, d = out range max
 def range_map(val_in, a, b, c, d):
     val_out = (val_in - a) / (b - a) * (d - c) + c
-    
+
     return(val_out)
 
 
 # Converting magnitut to size
 def mag_conv(mag_val):
     mag_out_val = range_map(mag_val, 5.5, -3.0, 0.001, 0.1)
-    
-    return(mag_out_val)
-    
 
-# Converting Right Ascension to float angle 
+    return(mag_out_val)
+
+
+# Converting Right Ascension to float angle
 def ra_conv(ra, ram, ras):
     ra_ang = ra + ram / 60 + ras / 3600
     ra_val = range_map(ra_ang, 0, 24, 0, 360)
-        
+
     return(ra_val)
 
 
@@ -63,9 +63,9 @@ def dec_conv(dec, decm, decs, ns):
     else:
         dec_ang = (dec + decm / 60 + decs / 3600) * -1
     dec_val = range_map(dec_ang, -90, 90, 0, 180)
-    
+
     return(dec_val)
-  
+
 # Assigning Stellar Classification
 def stellar_class(stel):
     c_index = 0
@@ -83,8 +83,8 @@ def stellar_class(stel):
     elif c == "K":
         c_index = 5
     elif c == "M":
-        c_index = 6            
-    
+        c_index = 6
+
     return c_index
 
 
@@ -108,7 +108,7 @@ bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collectio
 bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name="M_stars")
 
 # main loop, reading file
-data_folder = Path("C:\\Users\\ronny\\Documents\\Blender\\Blender_Stars")
+data_folder = Path("/home/spider/RaDecStars/")
 file_to_open = data_folder / "mag_5_stars.csv"
 file = open(file_to_open)
 star_file = csv.DictReader(file)
