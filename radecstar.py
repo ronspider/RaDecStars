@@ -1,31 +1,34 @@
 # File: radecstar.py
 # Name: "Right Ascension Declination Star" Version 1.1
-
 # (c)2023 by Ron Spider, rspaida@gmail.com, [test]
+
+# --- Information, Rescouces ---
+# Run this script in Blender
+# https://www.blender.org/
+
 
 # https://www.johnpAratt.com/items/astronomy/mag_5_stars.html
 # Add to mag_5_stars.csv file:
-# Polaris https://en.wikipedia.org/wiki/Polaris
-# Hind's Crimson Star https://en.wikipedia.org/wiki/R_Leporis
+# HR 424 Polaris https://en.wikipedia.org/wiki/Polaris [for better oriantation, northern hemnis., experimental]
+# HR 1607 Hind's Crimson Star https://en.wikipedia.org/wiki/R_Leporis [my favorit star, experimental]
 
 # --- Imports ---
-import bpy
+import bpy # Blender module
 import csv
 import math
-import time
-from pathlib import Path
+import time # for the perfomance timers, optional
+from pathlib import Path # combing file name and path
 import os
-# import pandas as pd
 
 # --- Globals ---
 star_amount = 3000 # line to read from the CVS file
-size = 10
-# mag_limit = 4.5
-# con_limit = "Cas"
+size = 10 # projection sphere size
+# mag_limit = 4.5 # [experimantel] 
+# con_limit = "Cas" # [experimantel]
 
 
 # --- Functions ---
-# Getting Star Name
+# Function, Getting Star Name
 def star_name_conv(name, ID):
     if name == "":
         return ID
@@ -33,7 +36,7 @@ def star_name_conv(name, ID):
         return name
 
 
-# Ranger Mapper
+# Function, Ranger Mapper
 # a = in range min, b = in range max
 # c = out range min, d = out range max
 def range_map(val_in, a, b, c, d):
@@ -42,14 +45,14 @@ def range_map(val_in, a, b, c, d):
     return(val_out)
 
 
-# Converting magnitut to size
+# Function, Converting magnitut [brightness] to size
 def mag_conv(mag_val):
     mag_out_val = range_map(mag_val, 5.5, -3.0, 0.001, 0.1)
 
     return(mag_out_val)
 
 
-# Converting Right Ascension to float angle
+# Function, Converting Right Ascension to float angle
 def ra_conv(ra, ram, ras):
     ra_ang = ra + ram / 60 + ras / 3600
     ra_val = range_map(ra_ang, 0, 24, 0, 360)
@@ -57,7 +60,7 @@ def ra_conv(ra, ram, ras):
     return(ra_val)
 
 
-# Converting Declination to float angle
+# Function, Converting Declination to float angle
 def dec_conv(dec, decm, decs, ns):
     if ns == "S":
         dec_ang = dec + decm / 60 + decs / 3600
@@ -68,7 +71,7 @@ def dec_conv(dec, decm, decs, ns):
 
     return(dec_val)
 
-# Assigning Stellar Classification
+# Function, Assigning Stellar Classification [experimental]
 def stellar_class(stel):
     c_index = 0
     c = stel[:1]
@@ -90,7 +93,8 @@ def stellar_class(stel):
     return c_index
 
 
-# def cle_sphere(rad):
+# Function, Dummy sphere [experimental]
+# def cle_sphere(rad): 
 #     bpy.ops.mesh.primitive_uv_sphere_add(segments=4, ring_count=4, radius=rad, enter_editmode=False, location=(0, 0, 0))
 #     for obj in bpy.context.selected_objects:
 #         obj.name = "00_Celestrial_Sphere"
@@ -109,18 +113,19 @@ bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collectio
 bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name="K_stars")
 bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name="M_stars")
 
-# main loop, reading file
-data_folder = Path("/home/spider/RaDecStars/") # In Linux just change the name 'spider' 
+# Main, reading csv file
+data_folder = Path("/home/spider/RaDecStars/") # In Linux just change the name 'spider' to yours 
 file_to_open = data_folder / "mag_5_stars.csv" # make sure this script and the 'mag_5_stars.csv' file are in the same folder
 file = open(file_to_open)
 star_file = csv.DictReader(file)
 
-# loop
+# Main, loop
 for i in range(0,star_amount):
     tic = time.perf_counter() # Start performance timer
     i = i + 1 # I know i += 1
     row1 = next(star_file)
-
+    
+    # assigning column values to variables
     id = row1[' HR']
     name = str(row1['Name'])
     ID = str(row1['ID'])
@@ -137,11 +142,12 @@ for i in range(0,star_amount):
     
     toc_a = time.perf_counter() # Set "a" performance timer check point
     
+    # Passing variables to the Functions
     star_name = star_name_conv(name, ID)
     mag_out_val = mag_conv(vmag)
     ra_val = ra_conv(ra, ram, ras)
     dec_val = dec_conv(dec, decm, decs, ns)
-    stell = stellar_class(sptype)
+    stell = stellar_class(sptype) # [experimental]
     
     # RA to Radians
     ra_rad = math.radians(ra_val)
@@ -149,12 +155,12 @@ for i in range(0,star_amount):
     de_rad = math.radians(dec_val)
     
     # Angles to x,y,z - The real magic/math happens here
-    r = size # projection sphere size
-    x = r * math.sin(de_rad) * math.cos(ra_rad)
-    y = r * math.sin(de_rad) * math.sin(ra_rad)
-    z = r * math.cos(de_rad)
+    r = size # assigning projection sphere size [global]
+    x = r * math.sin(de_rad) * math.cos(ra_rad) # Blender Position X
+    y = r * math.sin(de_rad) * math.sin(ra_rad) # Blender Position Y
+    z = r * math.cos(de_rad)                    # Blender Position Z
     
-    s = mag_out_val
+    s = mag_out_val # Blender Size, Star size, based on it's brighness
     
     toc_b = time.perf_counter() # Set "b" performance timer check point
     
@@ -162,7 +168,7 @@ for i in range(0,star_amount):
     # def blender_draw(vmag, mag_limit, con_limit, s, x, y, z, star_name, name):
     # Blender commands
     bpy.ops.mesh.primitive_uv_sphere_add(segments=4, ring_count=4, radius=s, enter_editmode=False, location=(x, y, z))
-    bpy.ops.object.move_to_collection(collection_index=stell) # Move star into correct collection [Index number]
+    bpy.ops.object.move_to_collection(collection_index=stell) # Move star into correct collection [Index number, Experimental]
     for obj in bpy.context.selected_objects:
         obj.name = star_name + "_" + sptype 
         if name != "":
