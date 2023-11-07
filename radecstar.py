@@ -14,6 +14,7 @@ import csv
 import math
 import time
 from pathlib import Path
+import os
 # import pandas as pd
 
 # --- Globals ---
@@ -62,6 +63,7 @@ def dec_conv(dec, decm, decs, ns):
         dec_ang = dec + decm / 60 + decs / 3600
     else:
         dec_ang = (dec + decm / 60 + decs / 3600) * -1
+        
     dec_val = range_map(dec_ang, -90, 90, 0, 180)
 
     return(dec_val)
@@ -108,14 +110,15 @@ bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collectio
 bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name="M_stars")
 
 # main loop, reading file
-data_folder = Path("/home/spider/RaDecStars/")
-file_to_open = data_folder / "mag_5_stars.csv"
+data_folder = Path("/home/spider/RaDecStars/") # In Linux just change the name 'spider' 
+file_to_open = data_folder / "mag_5_stars.csv" # make sure this script and the 'mag_5_stars.csv' file are in the same folder
 file = open(file_to_open)
 star_file = csv.DictReader(file)
 
+# loop
 for i in range(0,star_amount):
-    tic = time.perf_counter() # Set first timer counter
-    i = i + 1
+    tic = time.perf_counter() # Start performance timer
+    i = i + 1 # I know i += 1
     row1 = next(star_file)
 
     id = row1[' HR']
@@ -132,7 +135,7 @@ for i in range(0,star_amount):
     vmag = float(row1['Vmag'])
     sptype = str(row1['Sp Type'])
     
-    toc_a = time.perf_counter() # Set "a" timer count
+    toc_a = time.perf_counter() # Set "a" performance timer check point
     
     star_name = star_name_conv(name, ID)
     mag_out_val = mag_conv(vmag)
@@ -145,7 +148,7 @@ for i in range(0,star_amount):
     # DEC to Radians
     de_rad = math.radians(dec_val)
     
-    # Angles to x,y,z
+    # Angles to x,y,z - The real magic/math happens here
     r = size # projection sphere size
     x = r * math.sin(de_rad) * math.cos(ra_rad)
     y = r * math.sin(de_rad) * math.sin(ra_rad)
@@ -153,12 +156,11 @@ for i in range(0,star_amount):
     
     s = mag_out_val
     
-    toc_b = time.perf_counter() # Set "b" timer count
+    toc_b = time.perf_counter() # Set "b" performance timer check point
     
     # blender_draw(s, x, y, z, star_name, name):
     # def blender_draw(vmag, mag_limit, con_limit, s, x, y, z, star_name, name):
     # Blender commands
-    # if vmag < mag_limit and con == con_limit:
     bpy.ops.mesh.primitive_uv_sphere_add(segments=4, ring_count=4, radius=s, enter_editmode=False, location=(x, y, z))
     bpy.ops.object.move_to_collection(collection_index=stell) # Move star into correct collection [Index number]
     for obj in bpy.context.selected_objects:
@@ -166,20 +168,21 @@ for i in range(0,star_amount):
         if name != "":
             bpy.context.object.show_name = True
     
-    toc_c = time.perf_counter() # Set "c" timer count
+    toc_c = time.perf_counter() # Set "c" performance time check point
     
-    # --- Terminal feed back ---
+    # --- Terminal feedback ---
+    os.system('clear')
     print("------------ Job: " + str(i) + " of " + str(star_amount) + (f" in {toc_c - tic:0.4f} seconds -------------"))
-    print(f"Read CVS line in              {toc_a - tic:0.4f} seconds.")
-    print(f"Converted and drawn in        {toc_c - toc_a:0.4f} seconds.")
-    print(f"Drawn in                      {toc_c - toc_b:0.4f} seconds.")
+    print(f"Read CVS line in                 {toc_a - tic:0.4f} seconds.")
+    print(f"Converted and drawn in           {toc_c - toc_a:0.4f} seconds.")
+    print(f"Drawn in                         {toc_c - toc_b:0.4f} seconds.")
     print(id, name, ID, ra, ram, ras, ns, dec, decm, decs, vmag, sptype)
-    print("ra_val = " + str(round(ra_val,5)))
+    print("ra_val  = " + str(round(ra_val,5)))
     print("dec_val = " + str(round(dec_val,5)))
-    print("x = " + str(round(x,5)))
-    print("y = " + str(round(y,5)))
-    print("z = " + str(round(z,5)))
-    print("s = " + str(round(s,5)))
+    print("   x    = " + str(round(x,5)))
+    print("   y    = " + str(round(y,5)))
+    print("   z    = " + str(round(z,5)))
+    print("   s    = " + str(round(s,5)))
 
     # else:
     #    print(f"Job {i} skipped")
