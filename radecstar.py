@@ -21,7 +21,7 @@ from pathlib import Path # combing file name and path
 import os
 
 # --- Globals ---
-star_amount = 3000 # line to read from the CVS file
+star_amount = 3000 # lines to read from the CVS file [current has 3922]
 size = 10 # projection sphere size
 # mag_limit = 4.5 # [experimantel] 
 # con_limit = "Cas" # [experimantel]
