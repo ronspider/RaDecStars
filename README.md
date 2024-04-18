@@ -13,3 +13,13 @@ TBD
 
 ### Who maintains and contributes to the project
 
+### The script
+
+Here I will go over the code the explain what is happening. Express ideas and point out problems.
+And, yes I'm a noob. 
+
+```python
+def name()
+  pass
+```
+
