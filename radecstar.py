@@ -1,6 +1,6 @@
 # File: radecstar.py
 # Name: "Right Ascension Declination Star" Version 1.1
-# (c)2023 by Ron Spider, rspaida@gmail.com, [test]
+# 2023 by RS [test]
 
 # --- Information, Rescouces ---
 # Run this script in Blender
