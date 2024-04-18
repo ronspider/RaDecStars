@@ -103,7 +103,7 @@ def stellar_class(stel):
 
 # --- Main ---
 # Creating Collection for star classes [https://en.wikipedia.org/wiki/Stellar_classification]
-# Delete default collection to keep index start at 0 = O_Stars
+# Before running the script, delete default collection to keep index start at 0 = O_Stars
 # Stella Classification: O, B, A, F, G, K, and M,
 bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name="O_stars")
 bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name="B_stars")
@@ -190,7 +190,6 @@ for i in range(0,star_amount):
     print("   z    = " + str(round(z,5)))
     print("   s    = " + str(round(s,5)))
 
-    # else:
-    #    print(f"Job {i} skipped")
+# Note: this loop slows down.
 
     
