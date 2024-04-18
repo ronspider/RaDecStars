@@ -9,7 +9,7 @@ This is also my first project published on Github. I hope it can inspire you and
 Feel free to use the code, improve it. Maybe we can create a Blender Astronomy Plug-In. 
 
 ### Where users can get help with your project
-TBD
+Internet, maybe. ;-)
 
 ### Who maintains and contributes to the project
 [TBD]
