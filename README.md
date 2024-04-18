@@ -12,14 +12,21 @@ Feel free to use the code, improve it. Maybe we can create a Blender Astronomy P
 TBD
 
 ### Who maintains and contributes to the project
+[TBD]
 
 ### The script
 
 Here I will go over the code the explain what is happening. Express ideas and point out problems.
 And, yes I'm a noob. 
 
+#### Functions
+
 ```python
-def name()
-  pass
+# Getting Star Name
+def star_name_conv(name, ID):
+    if name == "":
+        return ID
+    else: 
+        return name
 ```
 
