@@ -29,7 +29,7 @@ def star_name_conv(name, ID):
     else: 
         return name
 ```
-### Blender
+#### Blender
 
 Here is the actual interaction with Blender.
 ```python
