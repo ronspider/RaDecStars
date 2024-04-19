@@ -29,3 +29,22 @@ def star_name_conv(name, ID):
     else: 
         return name
 ```
+### Blender
+
+Here is the actual interaction with Blender.
+```python
+    # blender_draw(s, x, y, z, star_name, name):
+    # def blender_draw(vmag, mag_limit, con_limit, s, x, y, z, star_name, name):
+    # Blender commands
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=4, ring_count=4, radius=s, enter_editmode=False, location=(x, y, z))
+    bpy.ops.object.move_to_collection(collection_index=stell) # Move star into correct collection [Index number, Experimental]
+    for obj in bpy.context.selected_objects:
+        obj.name = star_name + "_" + sptype 
+        if name != "":
+            bpy.context.object.show_name = True
+```
+This line I added so the display gets updated. Something to see in the Blender view portother then the terminal output
+```python
+    # Update the 3D- View Ports
+    bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=1)
+```
