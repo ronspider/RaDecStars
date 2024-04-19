@@ -43,7 +43,7 @@ Here is the actual interaction with Blender.
         if name != "":
             bpy.context.object.show_name = True
 ```
-This line I added so the display gets updated. Something to see in the Blender view portother then the terminal output
+This line I added so the display gets updated. Something to see in the Blender 3D view port besides the terminal output.
 ```python
     # Update the 3D- View Ports
     bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=1)
