@@ -190,6 +190,9 @@ for i in range(0,star_amount):
     print("   z    = " + str(round(z,5)))
     print("   s    = " + str(round(s,5)))
 
+# Update the 3D- View Ports
+    bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=1)
+    
 # Note: this loop slows down.
 
     
