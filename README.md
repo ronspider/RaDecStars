@@ -16,7 +16,7 @@ Internet, maybe. ;-)
 
 ### The script
 
-Here I will go over the code the explain what is happening. Express ideas and point out problems.
+Here I will go over the code and explain what is does. Express ideas and point out problems.
 And, yes I'm a noob. 
 
 #### Functions
