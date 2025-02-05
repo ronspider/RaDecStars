@@ -10,6 +10,7 @@ Feel free to use the code, improve it. Maybe we can create a Blender Astronomy P
 
 ### Where users can get help with your project
 Internet, maybe. ;-)
+www.blender.org
 
 ### Who maintains and contributes to the project
 [TBD]
