@@ -1,6 +1,9 @@
 ### What the project does
 A "simple" Python script, which, if run within Blender will read a list[csv file] of stars and convert the angle location [Right Ascension and Declination] in to XYZ-coordinates to plot the stars as 3D objects on a imaginary spherical surface. Creating a celestial sphere.
 
+Be aware, since I do all my work from linux based systems this code is not optimized for windows. Mainly OS relate stuff like paths and file naming conventions.
+It is on the to-do list to improve on that.
+
 ### Why the project is useful
 It is one of my first Python projects, which has taught me a lot and still to this day brings me always back to it to figure more out about the Blender Python API and Python.
 This is also my first project published on Github. I hope it can inspire you and help me to learn more.
@@ -9,8 +12,27 @@ This is also my first project published on Github. I hope it can inspire you and
 Feel free to use the code, improve it. Maybe we can create a Blender Astronomy Plug-In. 
 
 ### Where users can get help with your project
-Internet, maybe. ;-)
-www.blender.org
+For Blender relate stuff check out these links
+
+[https://www.blender.org ](https://www.blender.org/) 
+
+[https://docs.blender.org/api/current/index.html](https://docs.blender.org/api/current/index.html)
+
+For Python stuff as always
+
+[https://www.python.org/](https://www.python.org/)
+
+I'm using these python moduels. 
+
+```python
+# --- Imports ---
+import bpy # Blender module
+import csv
+import math
+import time # for the perfomance timers, optional
+from pathlib import Path # combing file name and path
+import os
+```
 
 ### Who maintains and contributes to the project
 [TBD]
