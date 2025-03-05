@@ -179,7 +179,7 @@ for i in range(0,star_amount):
     # --- Terminal feedback ---
     os.system('clear')
     print("------------ Job: " + str(i) + " of " + str(star_amount) + (f" in {toc_c - tic:0.4f} seconds -------------"))
-    print(f"Read CVS line in                 {toc_a - tic:0.4f} seconds.")
+    print(f"Read CSV line in                 {toc_a - tic:0.4f} seconds.")
     print(f"Converted and drawn in           {toc_c - toc_a:0.4f} seconds.")
     print(f"Drawn in                         {toc_c - toc_b:0.4f} seconds.")
     print(id, name, ID, ra, ram, ras, ns, dec, decm, decs, vmag, sptype)
