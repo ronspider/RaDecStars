@@ -1,28 +1,68 @@
-### What the project does
-A "simple" Python script, which, if run within Blender will read a list[csv file] of stars and convert the angle location [Right Ascension and Declination] in to XYZ-coordinates to plot the stars as 3D objects on a imaginary spherical surface. Creating a celestial sphere.
+# Celestial Sphere Blender Script
 
-Be aware, since I do all my work from linux based systems this code is not optimized for windows. Mainly OS relate stuff like paths and file naming conventions.
-It is on the to-do list to improve on that.
+## Overview
 
-### Why the project is useful
-It is one of my first Python projects, which has taught me a lot and still to this day brings me always back to it to figure more out about the Blender Python API and Python.
-This is also my first project published on Github. I hope it can inspire you and help me to learn more.
+This is a Python script designed to run within Blender that reads a CSV file containing star data and converts celestial coordinates (Right Ascension and Declination) into 3D XYZ coordinates. The script then plots these stars as 3D objects on an imaginary spherical surface, creating a visual celestial sphere.
 
-### How users can get started with the project
-Feel free to use the code, improve it. Maybe we can create a Blender Astronomy Plug-In. 
+## Features
 
-### Where users can get help with your project
-For Blender relate stuff check out these links
+- Converts Right Ascension and Declination to 3D XYZ coordinates
+- Creates a celestial sphere visualization in Blender
+- Reads star data from CSV files
+- Simple and lightweight implementation
 
-[https://www.blender.org ](https://www.blender.org/) 
+## ⚠️ Platform Note
 
-[https://docs.blender.org/api/current/index.html](https://docs.blender.org/api/current/index.html)
+This code was developed primarily on Linux-based systems. While the core functionality should work across platforms, there may be OS-related issues with file paths and naming conventions on Windows. Cross-platform compatibility improvements are planned for future releases.
 
-For Python stuff as always
+## Why This Project Exists
 
-[https://www.python.org/](https://www.python.org/)
+This was one of my first Python projects and has been an invaluable learning experience. It continues to serve as a reference point for deepening my understanding of:
 
-I'm using these python moduels. 
+- The Blender Python API
+- Python programming fundamentals
+- Astronomical coordinate systems
+
+As my first project published on GitHub, I hope it inspires others and contributes to collaborative learning.
+
+## Getting Started
+
+### Requirements
+
+- Blender (with Python scripting support)
+- Python modules (see below)
+
+### Usage
+
+1. Place the script in your Blender scripts directory or run it directly within Blender's Text Editor
+2. Prepare a CSV file with star data (Right Ascension and Declination columns)
+3. Run the script to generate the celestial sphere
+
+### Python Modules Used
+
+*Please refer to the original repository for the complete list of dependencies.*
+
+## Contributing
+
+Feel free to:
+- Use the code for your own projects
+- Submit improvements or bug fixes
+- Collaborate on expanding functionality
+
+There's potential to evolve this into a full-fledged Blender Astronomy Plugin—contributions welcome!
+
+## Getting Help
+
+### Blender Resources
+- [Blender Official](https://www.blender.org)
+- [Blender Python API Documentation](https://docs.blender.org/api/current/index.html)
+
+### Python Resources
+- [Python Official Website](https://www.python.org/)
+
+---
+
+*This project is open source and welcomes community contributions. Happy stargazing! 🌟*
 
 ```python
 # --- Imports ---
