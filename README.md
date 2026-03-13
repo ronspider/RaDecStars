@@ -39,7 +39,15 @@ As my first project published on GitHub, I hope it inspires others and contribut
 3. Run the script to generate the celestial sphere
 
 ### Python Modules Used
-
+```python
+# --- Imports ---
+import bpy # Blender module
+import csv
+import math
+import time # for the perfomance timers, optional
+from pathlib import Path # combing file name and path
+import os
+```
 *Please refer to the original repository for the complete list of dependencies.*
 
 ## Contributing
@@ -64,21 +72,9 @@ There's potential to evolve this into a full-fledged Blender Astronomy Plugin—
 
 *This project is open source and welcomes community contributions. Happy stargazing! 🌟*
 
-```python
-# --- Imports ---
-import bpy # Blender module
-import csv
-import math
-import time # for the perfomance timers, optional
-from pathlib import Path # combing file name and path
-import os
-```
 
-### Who maintains and contributes to the project
-[TBD]
 
-### The script
-
+## Notes
 Here I will go over the code and explain what is does. Express ideas and point out problems.
 And, yes I'm a noob. 
 
